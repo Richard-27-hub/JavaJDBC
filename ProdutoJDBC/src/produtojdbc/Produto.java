@@ -39,6 +39,25 @@ public class Produto {
 			}
 
 		}
+
+		// Incluindo Produto - inicio
+		String sql1 = "INSERT INTO eletronico values (?,?,?); ";
+		try {
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setString(1, this.codProduto);
+			stm.setString(2, this.);
+			stm.setDouble(3, this.precoProduto);
+			stm.execute();
+		} catch (Exception e) {
+			if (e instanceof SQLIntegrityConstraintViolationException) {
+				System.out.println("Registro Duplicado ! Verifique");
+				return false;
+			} else if (e instanceof SQLException) {
+				System.out.println("Problemas ao inserir Produto ");
+				return false;
+			}
+
+		}
 		return true;
 	}
 
